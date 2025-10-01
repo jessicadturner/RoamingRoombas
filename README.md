@@ -19,6 +19,8 @@ Roaming Roombas is a versatile, low-cost platform for building expressive and cu
 - **Face Display**: 7" touchscreen or mobile device
 - **Sensors**: IR proximity and bump sensors
 - **Power**: Powered via Create3’s onboard battery
+  
+A full price list with links to necessary components is available in the Hardware folder above. 
 
 ### Software
 - **Languages**: Python or ROS2
@@ -27,3 +29,24 @@ Roaming Roombas is a versatile, low-cost platform for building expressive and cu
   - `PhaseController`: Links behaviors to expressions
   - `BlinkManager`: Adds lifelike blinking
   - `Storyboard`: Maps user-defined scenarios to robot actions
+
+## 🤖 Example Robots
+
+### Bubbles
+<img src="Images/Bubbles.jpeg" alt="Bubbles" width="200"/>
+Bubbles is a cute, child-friendly robot with smooth movements and rounded features. Ideal for school and playful environments.
+
+### Spike
+<img src="Images/Spike.jpeg" alt="Spike" width="200"/>
+Spike is angular and intimidating, designed for security and patrol tasks, featuring jerky movements and grumpy expressions.
+
+### BeachBot
+<img src="Images/BeachBot.jpeg" alt="BeachBot" width="200"/>
+BeachBot is crafted from cardboard and Lego, designed to assist beachgoers with safety info and navigation.
+
+
+## 🙏 Acknowledgements
+
+We gratefully acknowledge the contributions of students and participants involved in the co-design workshops that shaped the development of the Roaming Roombas platform. Their creativity, diverse use case ideas, and design insights were instrumental in validating the feasibility and adaptability of the system.
+
+**With special thanks to** the developers of **Bubbles**, **Spike**, and **BeachBot** for their innovative prototypes and commitment to accessible social robots. This project would not have been possible without their enthusiasm and imagination.
