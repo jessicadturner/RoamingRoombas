@@ -30,6 +30,52 @@ A full price list with links to necessary components is available in the Hardwar
   - `BlinkManager`: Adds lifelike blinking
   - `Storyboard`: Maps user-defined scenarios to robot actions
 
+## Setup of Create3 Platform with Rasberry Pi
+
+### Prerequisites
+
+1. **Install Ubuntu on your Raspberry Pi**  
+   Follow the official installation instructions [here](https://ubuntu.com/download/raspberry-pi).
+
+2. **Install ROS 2**  
+   Use the binary installation guide for Ubuntu found [here](https://docs.ros.org/en/kilted/Installation/Alternatives/Ubuntu-Development-Setup.html).
+
+
+###  Connecting Raspberry Pi and Create 3 via USB-C
+
+Follow [Jim Bennett’s guide](https://jimbobbennett.dev/blogs/irobot-create3-connect-a-pi/) for setting up USB-C communication between your Raspberry Pi and the Create 3.
+
+### ROS 2 Communication Setup
+Once the USB connection is successful, you can launch ROS 2 nodes on the Pi that communicate with the Create 3.
+You may need to ensure the ROS Domain ID matches.
+
+Check or Create `ROS_DOMAIN_ID` in `.bashrc`
+
+Open your .bashrc file on the Raspberry Pi:
+
+```js
+nano ~/.bashrc
+```
+Add or update the following line, matching the Domain ID of your Create 3 robot (e.g., 0 is default):
+```js
+export ROS_DOMAIN_ID=0  // (or whatever value your Create3 is set to)
+```
+Save and apply the changes:
+```js
+source ~/.bashrc
+```
+### Check Create 3 Configuration Interface
+
+You can configure the Create 3 robot's domain ID and ROS namespace via its web interface:
+
+1. Connect to the robot’s configuration page (see IP address assigned to the robot).
+2. Update ROS 2 Domain ID to match your Pi’s .bashrc.
+3. Save and Restart Application for changes to take effect.
+
+### Verifying ROS 2 Topics
+After updating your domain ID or RMW implementation, you must restart ROS 2 on both devices (or just reboot them) for changes to take effect.
+* Use `ros2 topic list` after both are set up to confirm connection.
+
 ## 🤖 Example Robots
 
 ### Bubbles
