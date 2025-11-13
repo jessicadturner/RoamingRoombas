@@ -133,7 +133,7 @@ To set up the ROS2 workspace, you have two options:
 
 1. **Official Documentation**: Follow the [Creating a Workspace - ROS2 Documentation](https://docs.ros.org/en/kilted/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html)
 
-2. **Video Tutorial** (Recommended): Watch ["ROS2 Tutorial – ROS2 Humble Crash Course"](https://www.youtube.com/watch?v=Gg25GfA456o) by Robotics Back-End, from **12:09 to 29:18**, which provides a clear walkthrough of setting up a ROS2 workspace.
+2. **Video Tutorial** (Recommended): Watch ["ROS2 Tutorial – ROS2 Humble Crash Course"](https://www.youtube.com/watch?v=Gg25GfA456o) by Robotics Back-End, from **21:29 to 29:18**, which provides a clear walkthrough of setting up a ROS2 workspace.
 
 ### Creating Your Robot Controller Package
 
