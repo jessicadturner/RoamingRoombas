@@ -31,58 +31,99 @@ A full price list with links to necessary components is available in the Hardwar
   - `BlinkManager`: Adds lifelike blinking
   - `Storyboard`: Maps user-defined scenarios to robot actions
 
-## Setup of Create3 Platform with Rasberry Pi
+## Setup of Create3 Platform with Raspberry Pi
 
 ### Prerequisites
 
 1. **Install Ubuntu on your Raspberry Pi**  
-   Follow the official installation instructions [here](https://ubuntu.com/download/raspberry-pi).
+   Follow the official installation instructions: [Ubuntu for Raspberry Pi](https://ubuntu.com/download/raspberry-pi)
 
-2. **Install ROS 2**  
-   Use the binary installation guide for Ubuntu found [here](https://docs.ros.org/en/kilted/Installation/Alternatives/Ubuntu-Development-Setup.html).
+   > **Recommended**: Ubuntu 22.04 LTS (Jammy) for ROS 2 Humble compatibility
 
-### Connecting Raspberry Pi and Create 3 via USB-C
+2. **Install ROS 2 on the Raspberry Pi**  
+   Follow the binary installation guide: [ROS 2 Humble Binary Installation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html)
 
-Follow [Jim Bennett’s guide](https://jimbobbennett.dev/blogs/irobot-create3-connect-a-pi/) for setting up USB-C communication between your Raspberry Pi and the Create 3.
+   > **Important**: Install the full desktop version (`ros-humble-desktop`) or at minimum the base version (`ros-humble-ros-base`)
 
-### ROS 2 Communication Setup
+### Connecting Raspberry Pi and Create3 via USB-C
 
-Once the USB connection is successful, you can launch ROS 2 nodes on the Pi that communicate with the Create 3.
-You may need to ensure the ROS Domain ID matches.
+1. **Physical Connection**  
+   Connect your Raspberry Pi to the Create3's USB-C port using a USB-C cable.
 
-Check or Create `ROS_DOMAIN_ID` in `.bashrc`
+2. **Follow Setup Guide**  
+   Follow [Jim Bennett's guide](https://jimbobbennett.dev/blogs/irobot-create3-connect-a-pi/) for detailed instructions on configuring USB-C communication between your Raspberry Pi and the Create3.
 
-Open your .bashrc file on the Raspberry Pi:
+### Configure ROS 2 Domain ID
 
-```js
-nano ~/.bashrc
+The ROS 2 Domain ID must match between your Raspberry Pi and Create3 for them to communicate.
+
+#### On the Raspberry Pi:
+
+1. Open your `.bashrc` file:
+
+```bash
+   nano ~/.bashrc
 ```
 
-Add or update the following line, matching the Domain ID of your Create 3 robot (e.g., 0 is default):
+2. Add the following line (use domain ID 0 unless you have a specific reason to use another):
 
-```js
-export ROS_DOMAIN_ID=0  (or whatever value your Create3 is set to)
+```bash
+   export ROS_DOMAIN_ID=0
 ```
 
-Save and apply the changes:
+3. Save the file (`Ctrl+O`, `Enter`, `Ctrl+X`) and apply the changes:
 
-```js
-source ~/.bashrc
+```bash
+   source ~/.bashrc
 ```
 
-### Check Create 3 Configuration Interface
+#### On the Create3:
 
-You can configure the Create 3 robot's domain ID and ROS namespace via its web interface:
+1. **Find the Create3's IP address**:
 
-1. Connect to the robot’s configuration page (see IP address assigned to the robot).
-2. Update ROS 2 Domain ID to match your Pi’s .bashrc.
-3. Save and Restart Application for changes to take effect.
+   - Check the robot's LED display, or
+   - Look for it on your router's connected devices, or
+   - The Create3 typically broadcasts its IP on the LCD screen during startup
 
-### Verifying ROS 2 Topics
+2. **Access the Create3 Web Interface**:
 
-After updating your domain ID or RMW implementation, you must restart ROS 2 on both devices (or just reboot them) for changes to take effect.
+   - Open a web browser and navigate to: `http://<CREATE3_IP_ADDRESS>`
+   - Example: `http://192.168.1.100`
 
-- Use `ros2 topic list` after both are set up to confirm connection.
+3. **Configure the Domain ID**:
+   - Navigate to the **Application** → **Configuration** section
+   - Set the **ROS 2 Domain ID** to match your Pi (e.g., `0`)
+   - Optionally set the **ROS 2 Namespace** if needed (default is usually fine)
+   - Click **Save** and then **Restart Application**
+
+### Verifying the Connection
+
+After configuration, verify that your Raspberry Pi can see the Create3's ROS 2 topics:
+
+1. **On the Raspberry Pi**, open a terminal and run:
+
+```bash
+   ros2 topic list
+```
+
+2. You should see Create3-related topics such as:
+
+```
+   /battery_state
+   /cmd_audio
+   /cmd_lightring
+   /cmd_vel
+   /dock
+```
+
+(among others)
+
+> **Troubleshooting**: If you don't see any topics:
+>
+> - Verify both devices are on the same network (if using WiFi) or properly connected via USB-C
+> - Double-check that the ROS_DOMAIN_ID matches on both devices
+> - Restart both the Raspberry Pi and Create3
+> - Ensure your ROS 2 installation is sourced: `source /opt/ros/humble/setup.bash`
 
 ## Setting up ROS2
 
