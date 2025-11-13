@@ -212,7 +212,6 @@ To run the programs provided in the software directory of this repository:
 
    setup(
       # ... existing parameters ...
-      tests_require=['pytest'],
       entry_points={
          'console_scripts': [
                'creepy_robot = my_robot_controller.creepy_robot:main',
