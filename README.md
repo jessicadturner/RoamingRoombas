@@ -86,11 +86,13 @@ After updating your domain ID or RMW implementation, you must restart ROS 2 on b
 
 ## Setting up ROS2
 
-### ROS2 Workspace
+### ROS 2 Workspace
 
-To set up the ROS2 workspace, you may follow the official documentation here: [Creating a Workspace - ROS2 Documentation](https://docs.ros.org/en/kilted/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html).
+You can follow the official ROS 2 documentation to set up your workspace:  
+🔗 [Creating a Workspace – ROS 2 Documentation](https://docs.ros.org/en/kilted/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html)
 
-However, it is recommended to follow his video: [“ROS2 Tutorial – ROS2 Humble Crash Course”](https://www.youtube.com/watch?v=Gg25GfA456o) (by Robotics Back‑End) starting at 21:29 (0:21:29) up to 29:18 (0:29:18) as it covers setting up a ROS 2 workspace nicely.
+However, we recommend watching this video instead for a clearer, beginner-friendly walkthrough: [ROS 2 Humble Crash Course – Robotics Back-End](https://www.youtube.com/watch?v=Gg25GfA456o). **Watch from 21:29 to 29:18** — this section covers how to create and configure a ROS 2 Python workspace, and is easier to follow than the official guide.
+
 
 <!-- Need to figure out how to explain the create3 topics and how they work with the ros2 directory structure which looks something like this -->
 
