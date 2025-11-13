@@ -86,28 +86,126 @@ After updating your domain ID or RMW implementation, you must restart ROS 2 on b
 
 ## Setting up ROS2
 
-### ROS 2 Workspace
+### ROS2 Workspace
 
-You can follow the official ROS 2 documentation to set up your workspace:  
-🔗 [Creating a Workspace – ROS 2 Documentation](https://docs.ros.org/en/kilted/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html)
+To set up the ROS2 workspace, you have two options:
 
-However, we recommend watching this video instead for a clearer, beginner-friendly walkthrough: [ROS 2 Humble Crash Course – Robotics Back-End](https://www.youtube.com/watch?v=Gg25GfA456o). **Watch from 21:29 to 29:18** — this section covers how to create and configure a ROS 2 Python workspace, and is easier to follow than the official guide.
+1. **Official Documentation**: Follow the [Creating a Workspace - ROS2 Documentation](https://docs.ros.org/en/kilted/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html)
 
+2. **Video Tutorial** (Recommended): Watch ["ROS2 Tutorial – ROS2 Humble Crash Course"](https://www.youtube.com/watch?v=Gg25GfA456o) by Robotics Back-End, from **12:09 to 29:18**, which provides a clear walkthrough of setting up a ROS2 workspace.
 
-<!-- Need to figure out how to explain the create3 topics and how they work with the ros2 directory structure which looks something like this -->
+### Creating Your Robot Controller Package
+
+After setting up your workspace, create a Python package named `my_robot_controller`:
+
+```bash
+cd ~/ros2_ws/src
+ros2 pkg create my_robot_controller --build-type ament_python
+```
+
+You should end up with a `ros2_ws` directory that has the following structure:
 
 ```
-src/
-├── my_robot_controller/
-│   ├── my_robot_controller/
-│   │   ├── __init__.py
-│   │   └── robot_node.py
-│   ├── resource/
-│   ├── test/
-│   ├── package.xml
-│   ├── setup.cfg
-│   └── setup.py
+ros2_ws/
+└── src/
+    └── my_robot_controller/
+        ├── my_robot_controller/
+        │   └── __init__.py
+        ├── resource/
+        │   └── my_robot_controller
+        ├── test/
+        ├── package.xml
+        ├── setup.cfg
+        └── setup.py
 ```
+
+## Running Example Code
+
+To run the programs provided in the software directory of this repository:
+
+1. **Copy the Python file** (e.g., `creepy_robot.py`) into the **inner** `my_robot_controller` directory (the one containing `__init__.py`).
+
+   ```
+   src/
+   ├── my_robot_controller/
+   │   ├── my_robot_controller/
+   │   │   ├── __init__.py
+   │   │   ├── creepy_robot.py
+   │   ├── resource/
+   │   ├── test/
+   │   ├── package.xml
+   │   ├── setup.cfg
+   │   └── setup.py
+   ```
+
+2. **Update your package configuration** by ensuring the correct dependencies for the example code are in your `package.xml`:
+
+   ```xml
+   <?xml version="1.0"?>
+   <package format="3">
+
+   <!-- existing content  -->
+
+   <depend>rclpy</depend>
+   <depend>geometry_msgs</depend>
+   <depend>irobot_create_msgs</depend>
+   <exec_depend>python3-pygame</exec_depend>
+
+   <!-- existing content  -->
+
+   <export>
+      <build_type>ament_python</build_type>
+   </export>
+   </package>
+   ```
+
+3. **Add the entry point** in your `setup.py`:
+
+   ```python
+   # ... existing imports and content ...
+
+   setup(
+      # ... existing parameters ...
+      tests_require=['pytest'],
+      entry_points={
+         'console_scripts': [
+               'creepy_robot = my_robot_controller.creepy_robot:main',
+         ],
+      },
+   )
+
+   ```
+
+### Building the Program
+
+1. Navigate to the **top level** of your `ros2_ws` directory:
+
+   ```bash
+   cd ~/ros2_ws  # Adjust path if your workspace is located elsewhere
+   ```
+
+2. Build your workspace:
+
+   ```bash
+   colcon build --symlink-install
+   ```
+
+   > **Note**: The `--symlink-install` flag allows you to modify Python scripts without rebuilding.
+
+3. **Source your workspace**:
+   ```bash
+   source install/setup.bash
+   ```
+
+### Running the Program
+
+Now you can run your program:
+
+```bash
+ros2 run my_robot_controller creepy_robot
+```
+
+> **Troubleshooting**: If you get a "package not found" error, make sure you've sourced the workspace in your current terminal (`source install/setup.bash`).
 
 ## 🤖 Example Robots
 
