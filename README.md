@@ -80,15 +80,20 @@ The ROS 2 Domain ID must match between your Raspberry Pi and Create3 for them to
 #### On the Create3:
 
 1. **Find the Create3's IP address**:
-
-   - Check the robot's LED display, or
-   - Look for it on your router's connected devices, or
-   - The Create3 typically broadcasts its IP on the LCD screen during startup
+   
+   **If connected via USB-C**, the Create3 has a fixed IP address:
+    ```
+       192.168.186.2
+    ```
+   **If connected via WiFi**, find the IP address by:
+   - Checking your router's DHCP client list for a device named `iRobot-XXXX` (where XXXX is part of the serial number)
+   - Pinging the robot by hostname: `ping iRobot-XXXX.local` (replace XXXX with your robot's identifier)
+   - Using the Bluetooth `create3_ip_address.py` example from [python.irobot.com](https://python.irobot.com)
 
 2. **Access the Create3 Web Interface**:
-
    - Open a web browser and navigate to: `http://<CREATE3_IP_ADDRESS>`
-   - Example: `http://192.168.1.100`
+   - For USB connections: `http://192.168.186.2`
+   - For WiFi: Use the IP address found in step 1
 
 3. **Configure the Domain ID**:
    - Navigate to the **Application** → **Configuration** section
