@@ -60,22 +60,22 @@ The ROS 2 Domain ID must match between your Raspberry Pi and Create3 for them to
 #### On the Raspberry Pi:
 
 1. Open your `.bashrc` file:
-
-```bash
-   nano ~/.bashrc
-```
+  
+    ```bash
+       nano ~/.bashrc
+    ```
 
 2. Add the following line (use domain ID 0 unless you have a specific reason to use another):
-
-```bash
-   export ROS_DOMAIN_ID=0
-```
+    
+    ```bash
+       export ROS_DOMAIN_ID=0
+    ```
 
 3. Save the file (`Ctrl+O`, `Enter`, `Ctrl+X`) and apply the changes:
 
-```bash
-   source ~/.bashrc
-```
+    ```bash
+       source ~/.bashrc
+    ```
 
 #### On the Create3:
 
